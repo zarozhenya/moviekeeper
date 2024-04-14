@@ -6,7 +6,7 @@ export enum TabEnum {
 
 export type RootNavigatorParamList = {
   Tabs: undefined;
-  Details: {movieId: string};
+  Details: {movieId: number};
 };
 
 export type MainStackParamList = {

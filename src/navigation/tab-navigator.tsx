@@ -12,6 +12,7 @@ export const TabNavigator: FC = () => {
       screenOptions={{
         tabBarActiveTintColor: '#FF6B08',
         tabBarInactiveTintColor: '#545454',
+        headerShown: false,
       }}>
       <Tab.Screen
         name="Home"

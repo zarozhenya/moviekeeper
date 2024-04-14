@@ -1,23 +1,20 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {FC} from 'react';
-import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
-import {RootNavigatorParamList} from '../../types';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useMovies} from '../../api/hooks';
+import React, {FC, useState} from 'react';
+import {useDebounce} from 'use-debounce';
+import {SafeAreaView, View} from 'react-native';
+import {styles} from './styles';
+import {Input, Title, MoviesList} from '../../components';
 
 export const HomeScreen: FC = () => {
-  const {navigate} =
-    useNavigation<NativeStackNavigationProp<RootNavigatorParamList>>();
+  const [query, setQuery] = useState('');
+  const [debouncedQuery] = useDebounce(query, 400);
 
-  const {data, isLoading, error} = useMovies({search: ''});
-
-  console.log(data, isLoading, error);
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
-      <TouchableOpacity onPress={() => navigate('Details', {movieId: '1'})}>
-        <Text>Details</Text>
-      </TouchableOpacity>
+    <SafeAreaView style={styles.flex}>
+      <View style={styles.container}>
+        <Title text="Home" />
+        <Input value={query} onValueChange={setQuery} />
+        <MoviesList query={debouncedQuery} />
+      </View>
     </SafeAreaView>
   );
 };
