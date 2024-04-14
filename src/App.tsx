@@ -1,12 +1,15 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootNavigator} from './navigation';
+import {QueryClient} from './api/client';
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <QueryClient>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </QueryClient>
   );
 }
 
