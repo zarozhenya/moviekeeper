@@ -1,4 +1,4 @@
-import {useQuery} from '@tanstack/react-query';
+import {useInfiniteQuery} from '@tanstack/react-query';
 import Config from 'react-native-config';
 import {IGetMoviesResponse} from '../../types';
 
@@ -22,8 +22,11 @@ const getMovies = async (query: string, page: number) => {
 };
 
 export const useMovies = ({search}: UseMoviesProps) => {
-  return useQuery<IGetMoviesResponse>({
+  return useInfiniteQuery<IGetMoviesResponse>({
     queryKey: ['movies', search],
-    queryFn: () => getMovies(search, 1),
+    queryFn: ({pageParam = 1}) => getMovies(search, pageParam as number),
+    getNextPageParam: lastPage =>
+      lastPage.page < lastPage.total_pages ? lastPage.page + 1 : null,
+    initialPageParam: 1,
   });
 };
