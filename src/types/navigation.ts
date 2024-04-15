@@ -1,3 +1,5 @@
+import {IMovie} from './api';
+
 export enum TabEnum {
   Home,
   Movies,
@@ -6,7 +8,7 @@ export enum TabEnum {
 
 export type RootNavigatorParamList = {
   Tabs: undefined;
-  Details: {movieId: number};
+  Details: {movie: IMovie};
 };
 
 export type MainStackParamList = {

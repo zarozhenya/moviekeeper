@@ -17,7 +17,7 @@ export const MovieListItem: FC<Props> = React.memo(({item}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('Details', {movieId: item.id})}>
+      onPress={() => navigation.navigate('Details', {movie: item})}>
       <Image
         source={{uri: `${Config.IMAGE_URL}${item.poster_path}`}}
         style={styles.image}
