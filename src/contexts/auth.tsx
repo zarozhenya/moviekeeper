@@ -25,7 +25,6 @@ export const AuthProvider: FC<Props> = ({children}) => {
         try {
           await auth().signInWithEmailAndPassword(email, password);
         } catch (e) {
-          console.log(e);
           showErrorMessage(e);
         }
       },
