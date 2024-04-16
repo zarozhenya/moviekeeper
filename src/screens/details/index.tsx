@@ -1,10 +1,18 @@
 import React, {FC} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {MovieCard} from '../../components';
+import {RootNavigatorParamList} from '../../types';
+import {styles} from './styles';
 
-export const DetailsScreen: FC = () => {
+type Props = NativeStackScreenProps<RootNavigatorParamList, 'Details'>;
+
+export const DetailsScreen: FC<Props> = ({route}) => {
   return (
-    <SafeAreaView>
-      <Text>Details</Text>
+    <SafeAreaView style={styles.flex}>
+      <View style={styles.container}>
+        <MovieCard movie={route.params.movie} />
+      </View>
     </SafeAreaView>
   );
 };
