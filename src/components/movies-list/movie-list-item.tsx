@@ -26,7 +26,7 @@ export const MovieListItem: FC<Props> = React.memo(({item}) => {
       <Text style={styles.subText}>
         {item.genre_ids.map(key => GENRES[key]).join(', ')}
         {' | '}
-        {new Date(item.release_date).getFullYear()}
+        {item.release_date ? new Date(item.release_date).getFullYear() : 'N/A'}
       </Text>
     </TouchableOpacity>
   );
