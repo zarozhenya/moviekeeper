@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   containerStyle: {gap: 16},
@@ -8,12 +8,30 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#000000',
     textTransform: 'uppercase',
   },
   subText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#ff6b08',
   },
   image: {
