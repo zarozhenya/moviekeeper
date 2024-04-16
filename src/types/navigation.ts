@@ -7,7 +7,7 @@ export enum TabEnum {
 }
 
 export type RootNavigatorParamList = {
-  SignIn: undefined;
+  Authorization: undefined;
   Tabs: undefined;
   Details: {movie: IMovie};
 };

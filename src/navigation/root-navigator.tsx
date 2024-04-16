@@ -1,6 +1,6 @@
 import React, {FC, useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailsScreen, SignInScreen} from '../screens';
+import {DetailsScreen, AuthorizationScreen} from '../screens';
 import {RootNavigatorParamList} from '../types';
 import {AuthContext} from '../contexts';
 import {TabNavigator} from './tab-navigator';
@@ -21,7 +21,11 @@ export const RootNavigator: FC = () => {
           <Stack.Screen name="Details" component={DetailsScreen} />
         </>
       ) : (
-        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen
+          name="Authorization"
+          component={AuthorizationScreen}
+          options={{headerShown: false}}
+        />
       )}
     </Stack.Navigator>
   );

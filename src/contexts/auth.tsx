@@ -10,6 +10,7 @@ interface Props {
 export const AuthContext = React.createContext<IAuthContext>({
   userId: null,
   signIn: () => {},
+  signUp: () => {},
   signOut: () => {},
 });
 
@@ -18,10 +19,17 @@ export const AuthProvider: FC<Props> = ({children}) => {
 
   const authContext = useMemo<IAuthContext>(
     () => ({
-      signIn: data => {
-        EncryptedStorage.setItem('userId', data)
+      signIn: ({email, password}) => {
+        EncryptedStorage.setItem('userId', `${email}-${password}`)
           .then(() => {
-            setUserId(data);
+            setUserId(`${email}-${password}`);
+          })
+          .catch(e => console.error('ERROR:', e));
+      },
+      signUp: ({email, password}) => {
+        EncryptedStorage.setItem('userId', `${email}-${password}`)
+          .then(() => {
+            setUserId(`${email}-${password}`);
           })
           .catch(e => console.error('ERROR:', e));
       },
@@ -47,7 +55,7 @@ export const AuthProvider: FC<Props> = ({children}) => {
       } finally {
         setTimeout(() => {
           SplashScreen.hide();
-        });
+        }, 300);
       }
     };
 
