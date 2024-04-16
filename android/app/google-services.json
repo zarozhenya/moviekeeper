@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402017324874",
+    "project_id": "moviekeeper-49d9d",
+    "storage_bucket": "moviekeeper-49d9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402017324874:android:ed0cf91db36ce43466bbb3",
+        "android_client_info": {
+          "package_name": "com.moviekeeper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvbatAw8wyOo4G10XtOL2INjJl0uiRY08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

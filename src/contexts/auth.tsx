@@ -1,7 +1,9 @@
-import React, {FC, useEffect, useMemo, useState} from 'react';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import React, {FC, useEffect, useMemo} from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import auth from '@react-native-firebase/auth';
 import {IAuthContext} from '../types';
+import {useAuth} from '../api/hooks';
+import {showErrorMessage} from '../utils';
 
 interface Props {
   children: React.ReactNode;
@@ -15,30 +17,31 @@ export const AuthContext = React.createContext<IAuthContext>({
 });
 
 export const AuthProvider: FC<Props> = ({children}) => {
-  const [userId, setUserId] = useState<string | null>(null);
+  const {userId, isInitializing} = useAuth();
 
   const authContext = useMemo<IAuthContext>(
     () => ({
-      signIn: ({email, password}) => {
-        EncryptedStorage.setItem('userId', `${email}-${password}`)
-          .then(() => {
-            setUserId(`${email}-${password}`);
-          })
-          .catch(e => console.error('ERROR:', e));
+      signIn: async ({email, password}) => {
+        try {
+          await auth().signInWithEmailAndPassword(email, password);
+        } catch (e) {
+          console.log(e);
+          showErrorMessage(e);
+        }
       },
-      signUp: ({email, password}) => {
-        EncryptedStorage.setItem('userId', `${email}-${password}`)
-          .then(() => {
-            setUserId(`${email}-${password}`);
-          })
-          .catch(e => console.error('ERROR:', e));
+      signUp: async ({email, password}) => {
+        try {
+          await auth().createUserWithEmailAndPassword(email, password);
+        } catch (e) {
+          showErrorMessage(e);
+        }
       },
-      signOut: () => {
-        EncryptedStorage.setItem('userId', '')
-          .then(() => {
-            setUserId(null);
-          })
-          .catch(e => console.error('ERROR:', e));
+      signOut: async () => {
+        try {
+          return await auth().signOut();
+        } catch (e) {
+          showErrorMessage(e);
+        }
       },
       userId,
     }),
@@ -46,21 +49,12 @@ export const AuthProvider: FC<Props> = ({children}) => {
   );
 
   useEffect(() => {
-    const bootstrapAsync = async () => {
-      try {
-        const token = await EncryptedStorage.getItem('userId');
-        setUserId(token);
-      } catch (e) {
-        console.error('ERROR:', e);
-      } finally {
-        setTimeout(() => {
-          SplashScreen.hide();
-        }, 300);
-      }
-    };
-
-    bootstrapAsync();
-  }, []);
+    if (!isInitializing) {
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 300);
+    }
+  }, [isInitializing]);
 
   return (
     <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
