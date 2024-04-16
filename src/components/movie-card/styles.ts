@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   image: {
@@ -7,18 +7,45 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 20,
+    lineHeight: 24,
     color: '#000000',
     textTransform: 'uppercase',
     marginBottom: 12,
   },
   subTitle: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#000000',
     marginBottom: 8,
   },
   text: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#000000',
   },
   statsWrapper: {
@@ -28,8 +55,17 @@ export const styles = StyleSheet.create({
   statsRow: {flexDirection: 'row', gap: 8},
   statsRowCenter: {alignItems: 'center'},
   statsTextKey: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     width: 100,
     fontSize: 14,
+    lineHeight: 20,
     color: '#8c8c8c',
   },
   statsTextKeyContainer: {
@@ -45,11 +81,29 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   statsVotesRatingText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#ffffff',
   },
   statsVotesCountText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#000000',
   },
   statsVotesCountContainer: {
@@ -59,7 +113,16 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   statsTextValue: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     fontSize: 14,
+    lineHeight: 18,
     color: '#000000',
     flex: 1,
   },
