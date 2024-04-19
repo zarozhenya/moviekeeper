@@ -8,6 +8,7 @@ export enum TabEnum {
 
 export type INavigationMovie = Pick<
   IMovie,
+  | 'id'
   | 'poster_path'
   | 'title'
   | 'vote_average'

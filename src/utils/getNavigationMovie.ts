@@ -1,6 +1,7 @@
 import {IMovie, INavigationMovie} from '../types';
 
 export const getNavigationMovie = ({
+  id,
   poster_path,
   title,
   vote_average,
@@ -11,6 +12,7 @@ export const getNavigationMovie = ({
   overview,
 }: IMovie): INavigationMovie => {
   return {
+    id,
     poster_path,
     title,
     vote_average,
