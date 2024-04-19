@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {Image, ScrollView, Text} from 'react-native';
 import Config from 'react-native-config';
-import {IMovie} from '../../types';
+import {INavigationMovie} from '../../types';
 import {styles} from './styles';
 import {Stats} from './stats';
 
 interface Props {
-  movie: IMovie;
+  movie: INavigationMovie;
 }
 
 export const MovieCard: FC<Props> = ({movie}) => {
