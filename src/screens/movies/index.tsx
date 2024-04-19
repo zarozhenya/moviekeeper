@@ -7,12 +7,13 @@ import {styles} from './styles';
 
 export const MoviesScreen: FC = () => {
   const {userId} = useContext(AuthContext);
-  const {watched} = useMyMovies({userId});
+  const {myMovies} = useMyMovies({userId});
+
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
         <Title text="My movies" />
-        <MoviesList data={watched} />
+        <MoviesList data={myMovies} />
       </View>
     </SafeAreaView>
   );

@@ -12,8 +12,7 @@ interface UseMyMoviesProps {
 }
 
 export const useMyMovies = ({userId}: UseMyMoviesProps) => {
-  const [watched, setWatched] = useState<IMovie[]>([]);
-  const [queue, setQueue] = useState<IMovie[]>([]);
+  const [myMovies, setMyMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     if (!userId) {
@@ -29,16 +28,12 @@ export const useMyMovies = ({userId}: UseMyMoviesProps) => {
           return;
         }
 
-        Promise.all(convertReferencesToSnapshots(userData.watched))
-          .then(movies => setWatched(convertSnapshotsToMovies(movies)))
-          .catch(showErrorMessage);
-
-        Promise.all(convertReferencesToSnapshots(userData.queue))
-          .then(movies => setQueue(convertSnapshotsToMovies(movies)))
+        Promise.all(convertReferencesToSnapshots(userData.my_movies))
+          .then(movies => setMyMovies(convertSnapshotsToMovies(movies)))
           .catch(showErrorMessage);
       });
     return subscriber;
   }, [userId]);
 
-  return {watched, queue};
+  return {myMovies};
 };
