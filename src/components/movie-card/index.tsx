@@ -1,9 +1,10 @@
 import React, {FC} from 'react';
-import {Image, ScrollView, Text} from 'react-native';
+import {Image, ScrollView, Text, View} from 'react-native';
 import Config from 'react-native-config';
 import {INavigationMovie} from '../../types';
 import {styles} from './styles';
 import {Stats} from './stats';
+import {Button} from '../button';
 
 interface Props {
   movie: INavigationMovie;
@@ -26,6 +27,9 @@ export const MovieCard: FC<Props> = ({movie}) => {
       />
       <Text style={styles.subTitle}>About</Text>
       <Text style={styles.text}>{movie.overview}</Text>
+      <View style={styles.buttonContainer}>
+        <Button text='Add to "My movies"' variant="accent" />
+      </View>
     </ScrollView>
   );
 };
