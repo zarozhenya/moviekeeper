@@ -1,13 +1,12 @@
 import React, {FC, useContext} from 'react';
 import {SafeAreaView, View} from 'react-native';
-import {useMyMovies} from '../../api/hooks';
-import {AuthContext} from '../../contexts';
+import {MoviesContext} from '../../contexts';
 import {MoviesList, Title} from '../../components';
 import {styles} from './styles';
 
 export const MoviesScreen: FC = () => {
-  const {userId} = useContext(AuthContext);
-  const {myMovies} = useMyMovies({userId});
+  const {movies} = useContext(MoviesContext);
+  const myMovies = movies ?? [];
 
   return (
     <SafeAreaView style={styles.flex}>

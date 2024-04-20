@@ -1,39 +1,37 @@
 import {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {IMovie} from '../../types';
-import {
-  showErrorMessage,
-  convertSnapshotsToMovies,
-  convertReferencesToSnapshots,
-} from '../../utils';
+import {IFbUser, IMovie} from '../../types';
+import {showErrorMessage} from '../../utils';
 
 interface UseMyMoviesProps {
-  userId: string | null;
+  user: IFbUser | null;
 }
 
-export const useMyMovies = ({userId}: UseMyMoviesProps) => {
-  const [myMovies, setMyMovies] = useState<IMovie[]>([]);
-
+export const useMyMovies = ({user}: UseMyMoviesProps) => {
+  const [movies, setMovies] = useState<IMovie[] | null>(null);
   useEffect(() => {
-    if (!userId) {
+    if (!user || !user.my_movies.length) {
+      setMovies(null);
       return;
     }
 
     const subscriber = firestore()
-      .collection('users')
-      .doc(userId)
-      .onSnapshot(documentSnapshot => {
-        const userData = documentSnapshot.data();
-        if (!userData) {
-          return;
+      .collection('movies')
+      .where(
+        'id',
+        'in',
+        user.my_movies.map(a => Number(a.id)),
+      )
+      .onSnapshot(async querySnapshot => {
+        try {
+          setMovies(querySnapshot.docs.map(item => item.data() as IMovie));
+        } catch (e) {
+          showErrorMessage(e);
         }
-
-        Promise.all(convertReferencesToSnapshots(userData.my_movies))
-          .then(movies => setMyMovies(convertSnapshotsToMovies(movies)))
-          .catch(showErrorMessage);
       });
-    return subscriber;
-  }, [userId]);
 
-  return {myMovies};
+    return subscriber;
+  }, [user]);
+
+  return {movies};
 };

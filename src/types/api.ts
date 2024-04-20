@@ -1,3 +1,5 @@
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+
 export interface IMovie {
   id: number;
   original_title: string;
@@ -21,4 +23,16 @@ export interface IGetMoviesResponse {
   results: IMovie[];
   total_pages: number;
   total_results: number;
+}
+
+export interface IFbUser {
+  id: string;
+  email: string;
+  my_movies: FirebaseFirestoreTypes.DocumentReference<IMovie>[];
+}
+
+export interface IUser {
+  id: string;
+  email: string;
+  my_movies: IMovie[];
 }
