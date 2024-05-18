@@ -129,4 +129,7 @@ export const styles = StyleSheet.create({
   uppercaseText: {
     textTransform: 'uppercase',
   },
+  buttonContainer: {
+    marginTop: 24,
+  },
 });

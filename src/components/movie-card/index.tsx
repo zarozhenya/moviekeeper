@@ -1,15 +1,24 @@
-import React, {FC} from 'react';
-import {Image, ScrollView, Text} from 'react-native';
+import React, {FC, useContext} from 'react';
+import {Image, ScrollView, Text, View} from 'react-native';
 import Config from 'react-native-config';
-import {IMovie} from '../../types';
+import {INavigationMovie} from '../../types';
+import {MoviesContext} from '../../contexts';
+import {Button} from '../button';
 import {styles} from './styles';
 import {Stats} from './stats';
 
 interface Props {
-  movie: IMovie;
+  movie: INavigationMovie;
 }
 
 export const MovieCard: FC<Props> = ({movie}) => {
+  const {movies} = useContext(MoviesContext);
+
+  const isMyMovie = (movies ?? []).some(({id}) => id === movie.id);
+
+  const handleAdd = () => {};
+  const handleRemove = () => {};
+
   return (
     <ScrollView>
       <Image
@@ -26,6 +35,13 @@ export const MovieCard: FC<Props> = ({movie}) => {
       />
       <Text style={styles.subTitle}>About</Text>
       <Text style={styles.text}>{movie.overview}</Text>
+      <View style={styles.buttonContainer}>
+        <Button
+          variant={isMyMovie ? 'basic' : 'accent'}
+          text={isMyMovie ? 'Remove from "My movies"' : 'Add to "My movies"'}
+          onPress={isMyMovie ? handleRemove : handleAdd}
+        />
+      </View>
     </ScrollView>
   );
 };

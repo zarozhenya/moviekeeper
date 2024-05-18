@@ -1,14 +1,7 @@
 import React, {FC, useContext, useState} from 'react';
-import {
-  Keyboard,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Keyboard, SafeAreaView, Text, TextInput, View} from 'react-native';
 import {AuthContext} from '../../contexts';
-import {Title} from '../../components';
+import {Button, Title} from '../../components';
 import {styles} from './styles';
 
 export const AuthorizationScreen: FC = () => {
@@ -36,26 +29,22 @@ export const AuthorizationScreen: FC = () => {
           secureTextEntry={true}
         />
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[styles.button, styles.buttonSignUp]}
+          <Button
+            text="Sign Up"
+            variant="accent"
             onPress={() => {
               signUp({email, password});
               Keyboard.dismiss();
-            }}>
-            <Text style={[styles.buttonText, styles.buttonTextSignUp]}>
-              Sign Up
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, styles.buttonSignIn]}
+            }}
+          />
+          <Button
+            text="Sign In"
+            variant="basic"
             onPress={() => {
               signIn({email, password});
               Keyboard.dismiss();
-            }}>
-            <Text style={[styles.buttonText, styles.buttonTextSignIn]}>
-              Sign In
-            </Text>
-          </TouchableOpacity>
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>

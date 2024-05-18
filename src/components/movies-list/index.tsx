@@ -1,31 +1,25 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC} from 'react';
 import {FlatList} from 'react-native';
-import {useMovies} from '../../api/hooks';
 import {styles} from './styles';
 import {MovieListItem} from './movie-list-item';
 import {EmptyList} from './empty-list';
+import {IMovie} from '../../types';
 
 interface Props {
-  query: string;
+  data?: IMovie[];
+  onEndReached?: () => void;
 }
 
-export const MoviesList: FC<Props> = ({query}) => {
-  const {data, fetchNextPage} = useMovies({search: query});
-
-  const movies = useMemo(
-    () => data?.pages.flatMap(({results}) => results),
-    [data?.pages],
-  );
-
+export const MoviesList: FC<Props> = ({data, onEndReached}) => {
   return (
     <FlatList
       contentContainerStyle={styles.containerStyle}
-      data={movies}
+      data={data}
       renderItem={({item}) => <MovieListItem item={item} />}
       keyExtractor={({id}) => String(id)}
       ListEmptyComponent={<EmptyList />}
       onEndReachedThreshold={1}
-      onEndReached={() => fetchNextPage()}
+      onEndReached={onEndReached}
     />
   );
 };
