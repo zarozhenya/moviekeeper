@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {useDebounce} from 'use-debounce';
 import {SafeAreaView, View} from 'react-native';
 import {useMovies} from '../../api/hooks';
@@ -9,19 +9,14 @@ export const HomeScreen: FC = () => {
   const [query, setQuery] = useState('');
   const [debouncedQuery] = useDebounce(query, 400);
 
-  const {data, fetchNextPage} = useMovies({search: debouncedQuery});
-
-  const movies = useMemo(
-    () => data?.pages.flatMap(({results}) => results),
-    [data?.pages],
-  );
+  const {data} = useMovies({search: debouncedQuery});
 
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
         <Title text="Home" />
         <Input value={query} onValueChange={setQuery} />
-        <MoviesList data={movies} onEndReached={fetchNextPage} />
+        <MoviesList data={data} />
       </View>
     </SafeAreaView>
   );
