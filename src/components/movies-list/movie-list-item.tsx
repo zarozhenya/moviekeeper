@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {GENRES} from '../../constants';
 import {IMovie, RootNavigatorParamList} from '../../types';
-import {getNavigationMovie} from '../../utils';
 import {styles} from './styles';
 
 interface Props {
@@ -19,7 +18,7 @@ export const MovieListItem: FC<Props> = React.memo(({item}) => {
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() =>
-        navigation.navigate('Details', {movie: getNavigationMovie(item)})
+        navigation.navigate('Details', {movieId: String(item.id)})
       }>
       <Image
         source={{uri: `${Config.IMAGE_URL}${item.poster_path}`}}

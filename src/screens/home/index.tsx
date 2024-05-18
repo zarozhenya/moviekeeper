@@ -9,14 +9,14 @@ export const HomeScreen: FC = () => {
   const [query, setQuery] = useState('');
   const [debouncedQuery] = useDebounce(query, 400);
 
-  const {data} = useMovies({search: debouncedQuery});
+  const {data, isLoading} = useMovies({search: debouncedQuery});
 
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
         <Title text="Home" />
         <Input value={query} onValueChange={setQuery} />
-        <MoviesList data={data} />
+        <MoviesList data={data} loading={isLoading} />
       </View>
     </SafeAreaView>
   );
