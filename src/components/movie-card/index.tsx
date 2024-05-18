@@ -2,10 +2,11 @@ import React, {FC, useContext} from 'react';
 import {Image, ScrollView, Text, View} from 'react-native';
 import Config from 'react-native-config';
 import {INavigationMovie} from '../../types';
-import {MoviesContext} from '../../contexts';
+import {AuthContext, MoviesContext} from '../../contexts';
 import {Button} from '../button';
 import {styles} from './styles';
 import {Stats} from './stats';
+import {useAddMovie, useRemoveMovie} from '../../api/hooks';
 
 interface Props {
   movie: INavigationMovie;
@@ -13,11 +14,11 @@ interface Props {
 
 export const MovieCard: FC<Props> = ({movie}) => {
   const {movies} = useContext(MoviesContext);
+  const {userId} = useContext(AuthContext);
+  const {addMovie} = useAddMovie({userId, movieId: String(movie.id)});
+  const {removeMovie} = useRemoveMovie({userId, movieId: String(movie.id)});
 
   const isMyMovie = (movies ?? []).some(({id}) => id === movie.id);
-
-  const handleAdd = () => {};
-  const handleRemove = () => {};
 
   return (
     <ScrollView>
@@ -39,7 +40,7 @@ export const MovieCard: FC<Props> = ({movie}) => {
         <Button
           variant={isMyMovie ? 'basic' : 'accent'}
           text={isMyMovie ? 'Remove from "My movies"' : 'Add to "My movies"'}
-          onPress={isMyMovie ? handleRemove : handleAdd}
+          onPress={isMyMovie ? removeMovie : addMovie}
         />
       </View>
     </ScrollView>
