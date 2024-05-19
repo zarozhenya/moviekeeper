@@ -1,17 +1,21 @@
 import firestore from '@react-native-firebase/firestore';
-import {useMemo} from 'react';
+import {useContext, useMemo} from 'react';
+import {UserContext} from '../../contexts';
 
 interface UseAddMovieProps {
   movieId: string;
-  userId: string | null;
 }
 
-export const useAddMovie = ({userId, movieId}: UseAddMovieProps) => {
+export const useAddMovie = ({movieId}: UseAddMovieProps) => {
+  const {user} = useContext(UserContext);
   return useMemo(
     () => ({
       addMovie: () => {
+        if (!user) {
+          return;
+        }
         firestore()
-          .doc(`users/${userId}`)
+          .doc(`users/${user.id}`)
           .update({
             my_movies: firestore.FieldValue.arrayUnion(
               firestore().doc(`movies/${movieId}`),
@@ -19,6 +23,6 @@ export const useAddMovie = ({userId, movieId}: UseAddMovieProps) => {
           });
       },
     }),
-    [userId, movieId],
+    [user, movieId],
   );
 };

@@ -21,7 +21,7 @@ export interface IMovie {
 
 export interface IFbUser {
   id: string;
-  email: string;
+  username: string;
   my_movies: FirebaseFirestoreTypes.DocumentReference<IMovie>[];
 }
 
@@ -29,5 +29,5 @@ export interface IComment {
   id: string;
   text: string;
   date: string;
-  user_name: string;
+  username: string;
 }

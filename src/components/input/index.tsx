@@ -8,13 +8,15 @@ interface Props {
   placeholder?: string;
   value: string;
   onValueChange: React.Dispatch<React.SetStateAction<string>>;
+  onSubmit?: () => void;
 }
 
 export const Input: FC<Props> = ({
   isBottomSheet,
   value,
-  onValueChange,
   placeholder = 'Enter the query',
+  onValueChange,
+  onSubmit,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const InputComponent = isBottomSheet ? BottomSheetTextInput : TextInput;
@@ -27,6 +29,7 @@ export const Input: FC<Props> = ({
       style={[styles.input, isFocused && styles.inputAccent]}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
+      onSubmitEditing={onSubmit}
     />
   );
 };

@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 
 export const useAuth = () => {
   const [userId, setUserId] = useState<string | null>(null);
+  const [username] = useState<string | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
 
   useEffect(() => {
@@ -13,5 +14,5 @@ export const useAuth = () => {
     return subscriber;
   }, []);
 
-  return {userId, isInitializing};
+  return {userId, username, isInitializing};
 };

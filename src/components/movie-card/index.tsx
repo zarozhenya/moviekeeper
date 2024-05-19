@@ -3,7 +3,7 @@ import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import Config from 'react-native-config';
 import {IMovie} from '../../types';
-import {AuthContext, MoviesContext} from '../../contexts';
+import {MoviesContext} from '../../contexts';
 import {Button} from '../button';
 import {styles} from './styles';
 import {Stats} from './stats';
@@ -17,9 +17,8 @@ interface Props {
 export const MovieCard: FC<Props> = ({movie}) => {
   const bottomsheetRef = useRef<BottomSheet | null>(null);
   const {movies} = useContext(MoviesContext);
-  const {userId} = useContext(AuthContext);
-  const {addMovie} = useAddMovie({userId, movieId: String(movie.id)});
-  const {removeMovie} = useRemoveMovie({userId, movieId: String(movie.id)});
+  const {addMovie} = useAddMovie({movieId: String(movie.id)});
+  const {removeMovie} = useRemoveMovie({movieId: String(movie.id)});
 
   const isMyMovie = (movies ?? []).some(({id}) => id === movie.id);
 

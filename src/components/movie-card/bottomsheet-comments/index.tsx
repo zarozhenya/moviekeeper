@@ -5,6 +5,9 @@ import {IComment} from '../../../types';
 import {EmptyList} from './empty-list';
 import {BottomSheetBackdrop} from './bottomsheet-backdrop';
 import {BottomSheetFooter} from './bottomsheet-footer';
+import {styles} from './styles';
+import {CommentItem} from './comment-item';
+import {ItemSeparator} from './item-separator';
 
 interface Props {
   comments: IComment[];
@@ -21,14 +24,15 @@ export const BottomSheetComments = forwardRef<BottomSheet, Props>(
         footerComponent={BottomSheetFooter}
         index={-1}
         snapPoints={snapPoints}>
+        <View style={styles.commentHeaderContainer}>
+          <Text style={styles.commentHeader}>Comments</Text>
+        </View>
         <BottomSheetFlatList
           data={comments}
           ListEmptyComponent={EmptyList}
-          renderItem={({item}) => (
-            <View>
-              <Text>{item.text}</Text>
-            </View>
-          )}
+          ItemSeparatorComponent={ItemSeparator}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => <CommentItem comment={item} />}
         />
       </BottomSheet>
     );
