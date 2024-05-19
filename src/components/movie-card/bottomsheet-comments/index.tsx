@@ -4,6 +4,7 @@ import {Text, View} from 'react-native';
 import {IComment} from '../../../types';
 import {EmptyList} from './empty-list';
 import {BottomSheetBackdrop} from './bottomsheet-backdrop';
+import {BottomSheetFooter} from './bottomsheet-footer';
 
 interface Props {
   comments: IComment[];
@@ -17,6 +18,7 @@ export const BottomSheetComments = forwardRef<BottomSheet, Props>(
         ref={ref}
         enablePanDownToClose
         backdropComponent={BottomSheetBackdrop}
+        footerComponent={BottomSheetFooter}
         index={-1}
         snapPoints={snapPoints}>
         <BottomSheetFlatList
