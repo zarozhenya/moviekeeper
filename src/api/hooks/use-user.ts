@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import {IFbUser} from '../../types';
 import {showErrorMessage} from '../../utils';
 
@@ -21,10 +22,11 @@ export const useUser = ({userId}: UseUserProps) => {
       .onSnapshot(async documentSnapshot => {
         try {
           if (!documentSnapshot.exists) {
-            firestore()
-              .collection('users')
-              .doc(userId)
-              .set({id: userId, my_movies: []});
+            firestore().collection('users').doc(userId).set({
+              id: userId,
+              username: auth().currentUser?.email,
+              my_movies: [],
+            });
             return;
           }
 

@@ -1,17 +1,21 @@
 import firestore from '@react-native-firebase/firestore';
-import {useMemo} from 'react';
+import {useContext, useMemo} from 'react';
+import {UserContext} from '../../contexts';
 
 interface UseAddMovieProps {
   movieId: string;
-  userId: string | null;
 }
 
-export const useRemoveMovie = ({userId, movieId}: UseAddMovieProps) => {
+export const useRemoveMovie = ({movieId}: UseAddMovieProps) => {
+  const {user} = useContext(UserContext);
   return useMemo(
     () => ({
       removeMovie: () => {
+        if (!user) {
+          return;
+        }
         firestore()
-          .doc(`users/${userId}`)
+          .doc(`users/${user.id}`)
           .update({
             my_movies: firestore.FieldValue.arrayRemove(
               firestore().doc(`movies/${movieId}`),
@@ -19,6 +23,6 @@ export const useRemoveMovie = ({userId, movieId}: UseAddMovieProps) => {
           });
       },
     }),
-    [userId, movieId],
+    [user, movieId],
   );
 };
