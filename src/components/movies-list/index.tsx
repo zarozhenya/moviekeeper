@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
 import {styles} from './styles';
 import {MovieListItem} from './movie-list-item';
 import {EmptyList} from './empty-list';
@@ -7,10 +7,18 @@ import {IMovie} from '../../types';
 
 interface Props {
   data?: IMovie[];
+  loading?: boolean;
   onEndReached?: () => void;
 }
 
-export const MoviesList: FC<Props> = ({data, onEndReached}) => {
+export const MoviesList: FC<Props> = ({
+  data,
+  loading = false,
+  onEndReached,
+}) => {
+  if (loading) {
+    return <ActivityIndicator />;
+  }
   return (
     <FlatList
       contentContainerStyle={styles.containerStyle}

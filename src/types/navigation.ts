@@ -22,7 +22,7 @@ export type INavigationMovie = Pick<
 export type RootNavigatorParamList = {
   Authorization: undefined;
   Tabs: undefined;
-  Details: {movie: INavigationMovie};
+  Details: {movieId: string};
 };
 
 export type MainStackParamList = {

@@ -16,13 +16,7 @@ export interface IMovie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
-
-export interface IGetMoviesResponse {
-  page: number;
-  results: IMovie[];
-  total_pages: number;
-  total_results: number;
+  comments: IComment[];
 }
 
 export interface IFbUser {
@@ -31,8 +25,9 @@ export interface IFbUser {
   my_movies: FirebaseFirestoreTypes.DocumentReference<IMovie>[];
 }
 
-export interface IUser {
+export interface IComment {
   id: string;
-  email: string;
-  my_movies: IMovie[];
+  text: string;
+  date: string;
+  user_name: string;
 }

@@ -1,32 +1,39 @@
-import {useInfiniteQuery} from '@tanstack/react-query';
-import Config from 'react-native-config';
-import {IGetMoviesResponse} from '../../types';
+import {useQuery} from '@tanstack/react-query';
+import firestore from '@react-native-firebase/firestore';
+import {IMovie} from '../../types';
 
 interface UseMoviesProps {
   search: string;
 }
 
-const getMovies = async (query: string, page: number) => {
-  const params = new URLSearchParams({
-    api_key: Config.API_KEY || '',
-    page: String(page),
-  });
+const getSearchMovies = (query: string) => {
+  return firestore()
+    .collection('movies')
+    .where('title', '>=', query)
+    .where('title', '<=', query + '\uf8ff')
+    .limit(100)
+    .get();
+};
 
-  const url = query
-    ? `${Config.API_URL}/search/movie?${params}&query=${query}`
-    : `${Config.API_URL}/trending/movie/day?${params}`;
+const getNonSearchMovies = () => {
+  return firestore()
+    .collection('movies')
+    .orderBy('popularity', 'desc')
+    .limit(100)
+    .get();
+};
 
-  const response = await fetch(url);
+const getMovies = async (query: string) => {
+  const movies = query
+    ? await getSearchMovies(query)
+    : await getNonSearchMovies();
 
-  return response.json();
+  return movies.docs.map(item => item.data() as IMovie);
 };
 
 export const useMovies = ({search}: UseMoviesProps) => {
-  return useInfiniteQuery<IGetMoviesResponse>({
+  return useQuery<IMovie[]>({
     queryKey: ['movies', search],
-    queryFn: ({pageParam = 1}) => getMovies(search, pageParam as number),
-    getNextPageParam: lastPage =>
-      lastPage.page < lastPage.total_pages ? lastPage.page + 1 : null,
-    initialPageParam: 1,
+    queryFn: () => getMovies(search),
   });
 };
