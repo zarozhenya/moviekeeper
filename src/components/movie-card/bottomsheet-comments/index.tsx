@@ -20,6 +20,7 @@ export const BottomSheetComments = forwardRef<BottomSheet, Props>(
       <BottomSheet
         ref={ref}
         enablePanDownToClose
+        android_keyboardInputMode="adjustResize"
         backdropComponent={BottomSheetBackdrop}
         footerComponent={BottomSheetFooter}
         index={-1}
