@@ -1,7 +1,7 @@
 import React, {FC, useContext} from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import Config from 'react-native-config';
-import {INavigationMovie} from '../../types';
+import {IMovie} from '../../types';
 import {AuthContext, MoviesContext} from '../../contexts';
 import {Button} from '../button';
 import {styles} from './styles';
@@ -9,7 +9,7 @@ import {Stats} from './stats';
 import {useAddMovie, useRemoveMovie} from '../../api/hooks';
 
 interface Props {
-  movie: INavigationMovie;
+  movie: IMovie;
 }
 
 export const MovieCard: FC<Props> = ({movie}) => {
@@ -36,6 +36,11 @@ export const MovieCard: FC<Props> = ({movie}) => {
       />
       <Text style={styles.subTitle}>About</Text>
       <Text style={styles.text}>{movie.overview}</Text>
+      <TouchableOpacity style={styles.commentTextContainer}>
+        <Text style={styles.commentText}>
+          View comments ({movie.comments.length})
+        </Text>
+      </TouchableOpacity>
       <View style={styles.buttonContainer}>
         <Button
           variant={isMyMovie ? 'basic' : 'accent'}

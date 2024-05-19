@@ -35,6 +35,22 @@ export const styles = StyleSheet.create({
     color: '#000000',
     marginBottom: 8,
   },
+  commentTextContainer: {
+    marginTop: 8,
+  },
+  commentText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
+    fontSize: 14,
+    lineHeight: 18,
+    color: '#707070',
+  },
   text: {
     ...Platform.select({
       ios: {
