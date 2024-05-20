@@ -16,12 +16,15 @@ export const BottomSheetFooter: FC<BottomSheetFooterProps> = props => {
     params: {movieId},
   } = useRoute<RouteProp<RootNavigatorParamList, 'Details'>>();
 
-  const {addComment} = useAddComment({movieId, text: value});
+  const {addComment} = useAddComment({movieId});
 
   const handleSubmit = () => {
-    addComment();
-    setValue('');
-    Keyboard.dismiss();
+    const commentText = value.trim();
+    if (commentText) {
+      addComment(commentText);
+      setValue('');
+      Keyboard.dismiss();
+    }
   };
   return (
     <RNBottomSheetFooter {...props}>
