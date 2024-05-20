@@ -15,7 +15,9 @@ export const HomeScreen: FC = () => {
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
         <Title text="Home" />
-        <Input value={query} onValueChange={setQuery} />
+        <View style={styles.inputContainer}>
+          <Input value={query} onValueChange={setQuery} />
+        </View>
         <MoviesList data={data} loading={isLoading} />
       </View>
     </SafeAreaView>

@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     height: 40,
     paddingHorizontal: 12,
-    marginBottom: 16,
   },
   inputAccent: {
     borderColor: '#ff6b08',
