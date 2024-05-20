@@ -27,7 +27,8 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
   footerContainer: {
-    paddingHorizontal: 12,
+    backgroundColor: '#ffffff',
+    padding: 12,
   },
   commentItemUsername: {
     ...Platform.select({

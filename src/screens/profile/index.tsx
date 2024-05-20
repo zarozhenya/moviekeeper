@@ -1,15 +1,18 @@
 import React, {FC, useContext} from 'react';
-import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
-import {AuthContext} from '../../contexts';
+import {SafeAreaView, View} from 'react-native';
+import {AuthContext, UserContext} from '../../contexts';
+import {Button, Title} from '../../components';
+import {styles} from './styles';
 
 export const ProfileScreen: FC = () => {
+  const {user} = useContext(UserContext);
   const {signOut} = useContext(AuthContext);
   return (
-    <SafeAreaView>
-      <Text>Profile</Text>
-      <TouchableOpacity onPress={signOut}>
-        <Text>Sign out</Text>
-      </TouchableOpacity>
+    <SafeAreaView style={styles.flex}>
+      <View style={styles.container}>
+        <Title text={`Hello,\n${user?.username}!`} />
+        <Button variant="accent" text="Sign out" onPress={signOut} />
+      </View>
     </SafeAreaView>
   );
 };

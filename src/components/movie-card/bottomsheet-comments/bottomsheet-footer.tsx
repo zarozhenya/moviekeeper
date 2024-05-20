@@ -9,6 +9,7 @@ import {Input} from '../../input';
 import {styles} from './styles';
 import {useAddComment} from '../../../api/hooks';
 import {RootNavigatorParamList} from '../../../types';
+import SendIcon from '../../../assets/svg/send.svg';
 
 export const BottomSheetFooter: FC<BottomSheetFooterProps> = props => {
   const [value, setValue] = useState('');
@@ -16,13 +17,17 @@ export const BottomSheetFooter: FC<BottomSheetFooterProps> = props => {
     params: {movieId},
   } = useRoute<RouteProp<RootNavigatorParamList, 'Details'>>();
 
-  const {addComment} = useAddComment({movieId, text: value});
+  const {addComment} = useAddComment({movieId});
 
   const handleSubmit = () => {
-    addComment();
-    setValue('');
-    Keyboard.dismiss();
+    const commentText = value.trim();
+    if (commentText) {
+      addComment(commentText);
+      setValue('');
+      Keyboard.dismiss();
+    }
   };
+
   return (
     <RNBottomSheetFooter {...props}>
       <View style={styles.footerContainer}>
@@ -32,6 +37,8 @@ export const BottomSheetFooter: FC<BottomSheetFooterProps> = props => {
           onValueChange={setValue}
           placeholder="Enter the comment"
           onSubmit={handleSubmit}
+          endContent={SendIcon}
+          onEndContentPress={handleSubmit}
         />
       </View>
     </RNBottomSheetFooter>

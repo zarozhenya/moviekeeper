@@ -5,15 +5,14 @@ import {v4 as uuidv4} from 'uuid';
 import {UserContext} from '../../contexts';
 
 interface UseAddCommentProps {
-  text: string;
   movieId: string;
 }
 
-export const useAddComment = ({text, movieId}: UseAddCommentProps) => {
+export const useAddComment = ({movieId}: UseAddCommentProps) => {
   const {user} = useContext(UserContext);
   return useMemo(
     () => ({
-      addComment: () => {
+      addComment: (text: string) => {
         if (!user) {
           return;
         }
@@ -29,6 +28,6 @@ export const useAddComment = ({text, movieId}: UseAddCommentProps) => {
           });
       },
     }),
-    [user, movieId, text],
+    [user, movieId],
   );
 };

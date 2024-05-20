@@ -7,8 +7,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-  },
-  inputContainer: {
-    marginBottom: 16,
+    justifyContent: 'space-between',
   },
 });

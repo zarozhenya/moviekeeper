@@ -18,7 +18,11 @@ export const RootNavigator: FC = () => {
             component={TabNavigator}
             options={{headerShown: false}}
           />
-          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen
+            options={{headerBackTitle: 'Back'}}
+            name="Details"
+            component={DetailsScreen}
+          />
         </>
       ) : (
         <Stack.Screen
