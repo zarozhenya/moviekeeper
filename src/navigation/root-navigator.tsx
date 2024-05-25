@@ -26,7 +26,10 @@ export const RootNavigator: FC = () => {
             component={DetailsScreen}
           />
           <Stack.Screen
-            options={{headerBackTitle: t('navigator.back')}}
+            options={{
+              headerBackTitle: t('navigator.back'),
+              title: t('navigator.language'),
+            }}
             name="Language"
             component={LanguageScreen}
           />

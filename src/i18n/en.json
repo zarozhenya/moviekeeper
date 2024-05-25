@@ -1,8 +1,9 @@
 {
   "translation": {
-    "language": "English",
+    "language": "en",
     "navigator": {
-      "back": "Back"
+      "back": "Back",
+      "language": "Language"
     },
     "authorization": {
       "title": "Authorization",

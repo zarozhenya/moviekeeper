@@ -33,8 +33,8 @@ export const styles = StyleSheet.create({
         fontFamily: 'SF-Pro-Display-Regular',
       },
     }),
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 16,
+    lineHeight: 20,
     color: '#000000',
   },
   buttonContainer: {
