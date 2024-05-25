@@ -3,7 +3,11 @@
     "language": "en",
     "navigator": {
       "back": "Back",
-      "language": "Language"
+      "home-title": "Home",
+      "movies-title": "Movies",
+      "profile-title": "Profile",
+      "language": "Language",
+      "details": "Details"
     },
     "authorization": {
       "title": "Authorization",

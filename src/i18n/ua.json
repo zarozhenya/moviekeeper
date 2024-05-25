@@ -1,3 +1,53 @@
 {
-  "translation": {}
+  "translation": {
+    "language": "ua",
+    "navigator": {
+      "back": "Назад",
+      "home-title": "Головна",
+      "movies-title": "Фільми",
+      "profile-title": "Профіль",
+      "language": "Мова",
+      "details": "Деталі"
+    },
+    "authorization": {
+      "title": "Авторизація",
+      "email": "Електронна пошта",
+      "password": "Пароль",
+      "sign-up": "Зареєструватися",
+      "sign-in": "Увійти"
+    },
+    "home": {
+      "title": "Головна"
+    },
+    "my-movies": {
+      "title": "Мої фільми"
+    },
+    "profile": {
+      "title": "Привіт,\n{{username}}!",
+      "sign-out": "Вийти",
+      "language": "Мова"
+    },
+    "movies": {
+      "empty-list": "Список порожній."
+    },
+    "movie-card": {
+      "about": "Про фільм",
+      "comments": "Переглянути коментарі ({{quantity}})",
+      "button-remove": "Видалити з \"Мої фільми\"",
+      "button-add": "Додати до \"Мої фільми\"",
+      "votes": "Голос / Голоси",
+      "popularity": "Популярність",
+      "original-title": "Оригінальна назва",
+      "genre": "Жанр"
+    },
+    "comments": {
+      "me": "Я",
+      "empty-list": "Ще немає коментарів.",
+      "title": "Коментарі",
+      "placeholder": "Введіть коментар"
+    },
+    "input": {
+      "placeholder": "Введіть запит"
+    }
+  }
 }

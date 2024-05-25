@@ -21,7 +21,10 @@ export const RootNavigator: FC = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            options={{headerBackTitle: t('navigator.back')}}
+            options={{
+              headerBackTitle: t('navigator.back'),
+              title: t('navigator.details'),
+            }}
             name="Details"
             component={DetailsScreen}
           />
