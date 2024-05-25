@@ -1,6 +1,9 @@
 {
   "translation": {
     "language": "English",
+    "navigator": {
+      "back": "Back"
+    },
     "authorization": {
       "title": "Authorization",
       "email": "Email",
@@ -16,7 +19,8 @@
     },
     "profile": {
       "title": "Hello,\n{{username}}!",
-      "sign-out": "Sign Out"
+      "sign-out": "Sign Out",
+      "language": "Language"
     },
     "movies": {
       "empty-list": "No items."

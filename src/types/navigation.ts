@@ -8,6 +8,7 @@ export type RootNavigatorParamList = {
   Authorization: undefined;
   Tabs: undefined;
   Details: {movieId: string};
+  Language: undefined;
 };
 
 export type MainStackParamList = {

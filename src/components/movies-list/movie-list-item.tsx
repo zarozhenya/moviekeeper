@@ -12,14 +12,12 @@ interface Props {
 }
 
 export const MovieListItem: FC<Props> = React.memo(({item}) => {
-  const navigation =
+  const {navigate} =
     useNavigation<NativeStackNavigationProp<RootNavigatorParamList>>();
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() =>
-        navigation.navigate('Details', {movieId: String(item.id)})
-      }>
+      onPress={() => navigate('Details', {movieId: String(item.id)})}>
       <Image
         source={{uri: `${Config.IMAGE_URL}${item.poster_path}`}}
         style={styles.image}

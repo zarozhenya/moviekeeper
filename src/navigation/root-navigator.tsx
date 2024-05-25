@@ -1,6 +1,7 @@
 import React, {FC, useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailsScreen, AuthorizationScreen} from '../screens';
+import {useTranslation} from 'react-i18next';
+import {DetailsScreen, AuthorizationScreen, LanguageScreen} from '../screens';
 import {RootNavigatorParamList} from '../types';
 import {AuthContext} from '../contexts';
 import {TabNavigator} from './tab-navigator';
@@ -8,6 +9,7 @@ import {TabNavigator} from './tab-navigator';
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
 export const RootNavigator: FC = () => {
+  const {t} = useTranslation();
   const {userId} = useContext(AuthContext);
   return (
     <Stack.Navigator>
@@ -19,9 +21,14 @@ export const RootNavigator: FC = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            options={{headerBackTitle: 'Back'}}
+            options={{headerBackTitle: t('navigator.back')}}
             name="Details"
             component={DetailsScreen}
+          />
+          <Stack.Screen
+            options={{headerBackTitle: t('navigator.back')}}
+            name="Language"
+            component={LanguageScreen}
           />
         </>
       ) : (
