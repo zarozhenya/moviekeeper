@@ -10,8 +10,11 @@ export const ProfileScreen: FC = () => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
-        <Title text={`Hello,\n${user?.username}!`} />
-        <Button variant="accent" text="Sign out" onPress={signOut} />
+        <Title
+          textKey={'profile.title'}
+          textKeyOptions={{username: user?.username}}
+        />
+        <Button variant="accent" textKey="profile.sign-out" onPress={signOut} />
       </View>
     </SafeAreaView>
   );

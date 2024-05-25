@@ -11,7 +11,7 @@ export const MoviesScreen: FC = () => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
-        <Title text="My movies" />
+        <Title textKey="my-movies.title" />
         <MoviesList data={myMovies} />
       </View>
     </SafeAreaView>

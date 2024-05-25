@@ -20,7 +20,7 @@ export const HomeScreen: FC = () => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
-        <Title text="Home" />
+        <Title textKey="home.title" />
         <View style={styles.inputContainer}>
           <Input
             value={query}
