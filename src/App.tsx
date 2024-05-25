@@ -6,6 +6,7 @@ import {RootNavigator} from './navigation';
 import {QueryClient} from './api/client';
 import {AuthProvider, MoviesProvider, UserProvider} from './contexts';
 import {StyleSheet} from 'react-native';
+import './i18n';
 
 const styles = StyleSheet.create({
   gestureHandler: {flex: 1},
