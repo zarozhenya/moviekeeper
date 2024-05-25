@@ -1,0 +1,53 @@
+{
+  "translation": {
+    "language": "sp",
+    "navigator": {
+      "back": "Atrás",
+      "home-title": "Inicio",
+      "movies-title": "Películas",
+      "profile-title": "Perfil",
+      "language": "Idioma",
+      "details": "Detalles"
+    },
+    "authorization": {
+      "title": "Autorización",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "sign-up": "Registrarse",
+      "sign-in": "Iniciar sesión"
+    },
+    "home": {
+      "title": "Inicio"
+    },
+    "my-movies": {
+      "title": "Mis películas"
+    },
+    "profile": {
+      "title": "¡Hola,\n{{username}}!",
+      "sign-out": "Cerrar sesión",
+      "language": "Idioma"
+    },
+    "movies": {
+      "empty-list": "Sin elementos."
+    },
+    "movie-card": {
+      "about": "Acerca de",
+      "comments": "Ver comentarios ({{quantity}})",
+      "button-remove": "Eliminar de \"Mis películas\"",
+      "button-add": "Añadir a \"Mis películas\"",
+      "votes": "Voto / Votos",
+      "popularity": "Popularidad",
+      "original-title": "Título Original",
+      "genre": "Género"
+    },
+    "comments": {
+      "me": "Yo",
+      "empty-list": "Aún no hay comentarios.",
+      "title": "Comentarios",
+      "placeholder": "Ingrese el comentario"
+    },
+    "input": {
+      "placeholder": "Ingrese la consulta"
+    }
+  }
+}

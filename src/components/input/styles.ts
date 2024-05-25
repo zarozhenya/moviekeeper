@@ -1,17 +1,25 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   inputContainer: {
-    paddingVertical: 12,
-    paddingLeft: 12,
-    paddingRight: 44,
     borderColor: '#000000',
     borderWidth: 0.5,
     borderRadius: 8,
   },
   input: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Regular',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+    }),
     fontSize: 14,
-    lineHeight: 20,
+    paddingVertical: 0,
+    paddingLeft: 12,
+    paddingRight: 44,
+    height: 42,
     color: '#000000',
   },
   inputAccent: {

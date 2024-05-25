@@ -35,7 +35,7 @@ export const BottomSheetFooter: FC<BottomSheetFooterProps> = props => {
           isBottomSheet
           value={value}
           onValueChange={setValue}
-          placeholder="Enter the comment"
+          placeholderKey="comments.placeholder"
           onSubmit={handleSubmit}
           endContent={SendIcon}
           onEndContentPress={handleSubmit}

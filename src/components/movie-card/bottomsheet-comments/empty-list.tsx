@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 import {Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {styles} from './styles';
 
 export const EmptyList: FC = () => {
-  return <Text style={styles.emptyText}>No comments yet.</Text>;
+  const {t} = useTranslation();
+  return <Text style={styles.emptyText}>{t('comments.empty-list')}</Text>;
 };

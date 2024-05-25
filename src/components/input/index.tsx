@@ -2,11 +2,12 @@ import React, {FC, useState} from 'react';
 import {TextInput, TouchableOpacity, View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import {BottomSheetTextInput} from '@gorhom/bottom-sheet';
+import {useTranslation} from 'react-i18next';
 import {styles} from './styles';
 
 interface Props {
   isBottomSheet?: boolean;
-  placeholder?: string;
+  placeholderKey?: string;
   value: string;
   endContent?: React.FC<SvgProps>;
   onValueChange: React.Dispatch<React.SetStateAction<string>>;
@@ -17,12 +18,13 @@ interface Props {
 export const Input: FC<Props> = ({
   isBottomSheet,
   value,
-  placeholder = 'Enter the query',
+  placeholderKey = 'input.placeholder',
   endContent: EndContent = null,
   onValueChange,
   onSubmit,
   onEndContentPress,
 }) => {
+  const {t} = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
   const InputComponent = isBottomSheet ? BottomSheetTextInput : TextInput;
   return (
@@ -32,7 +34,7 @@ export const Input: FC<Props> = ({
         value={value}
         style={styles.input}
         onChangeText={onValueChange}
-        placeholder={placeholder}
+        placeholder={t(placeholderKey)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onSubmitEditing={onSubmit}

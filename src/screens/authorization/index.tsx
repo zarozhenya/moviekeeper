@@ -1,18 +1,20 @@
 import React, {FC, useContext, useState} from 'react';
 import {Keyboard, SafeAreaView, Text, TextInput, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {AuthContext} from '../../contexts';
 import {Button, Title} from '../../components';
 import {styles} from './styles';
 
 export const AuthorizationScreen: FC = () => {
+  const {t} = useTranslation();
   const {signIn, signUp} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.container}>
-        <Title text="Authorization" />
-        <Text style={styles.text}>Email</Text>
+        <Title textKey="authorization.title" />
+        <Text style={styles.text}>{t('authorization.email')}</Text>
         <TextInput
           style={styles.input}
           onChangeText={setEmail}
@@ -21,7 +23,7 @@ export const AuthorizationScreen: FC = () => {
           autoCapitalize="none"
           autoCorrect={false}
         />
-        <Text style={styles.text}>Password</Text>
+        <Text style={styles.text}>{t('authorization.password')}</Text>
         <TextInput
           style={styles.input}
           onChangeText={setPassword}
@@ -30,7 +32,7 @@ export const AuthorizationScreen: FC = () => {
         />
         <View style={styles.buttonContainer}>
           <Button
-            text="Sign Up"
+            textKey="authorization.sign-up"
             variant="accent"
             onPress={() => {
               signUp({email, password});
@@ -38,7 +40,7 @@ export const AuthorizationScreen: FC = () => {
             }}
           />
           <Button
-            text="Sign In"
+            textKey="authorization.sign-in"
             variant="basic"
             onPress={() => {
               signIn({email, password});

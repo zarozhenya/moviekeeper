@@ -1,11 +1,14 @@
 import React, {FC} from 'react';
 import {Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {styles} from './styles';
 
 interface Props {
-  text: string;
+  textKey: string;
+  textKeyOptions?: Record<string, unknown>;
 }
 
-export const Title: FC<Props> = ({text}) => {
-  return <Text style={styles.text}>{text}</Text>;
+export const Title: FC<Props> = ({textKey, textKeyOptions}) => {
+  const {t} = useTranslation();
+  return <Text style={styles.text}>{t(textKey, textKeyOptions)}</Text>;
 };

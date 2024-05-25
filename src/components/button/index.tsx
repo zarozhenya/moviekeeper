@@ -1,13 +1,15 @@
 import React, {FC} from 'react';
 import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {styles} from './styles';
 
 interface Props extends TouchableOpacityProps {
   variant: 'accent' | 'basic';
-  text: string;
+  textKey: string;
 }
 
-export const Button: FC<Props> = ({variant, text, ...props}) => {
+export const Button: FC<Props> = ({variant, textKey, ...props}) => {
+  const {t} = useTranslation();
   return (
     <TouchableOpacity
       style={[
@@ -22,7 +24,7 @@ export const Button: FC<Props> = ({variant, text, ...props}) => {
             ? styles.buttonTextAccent
             : styles.buttonTextBasic,
         ]}>
-        {text}
+        {t(textKey)}
       </Text>
     </TouchableOpacity>
   );

@@ -1,6 +1,7 @@
 import React, {forwardRef, useMemo} from 'react';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import {Text, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {IComment} from '../../../types';
 import {EmptyList} from './empty-list';
 import {BottomSheetBackdrop} from './bottomsheet-backdrop';
@@ -15,6 +16,7 @@ interface Props {
 
 export const BottomSheetComments = forwardRef<BottomSheet, Props>(
   ({comments}, ref) => {
+    const {t} = useTranslation();
     const snapPoints = useMemo(() => ['75%', '100%'], []);
     return (
       <BottomSheet
@@ -26,7 +28,7 @@ export const BottomSheetComments = forwardRef<BottomSheet, Props>(
         index={-1}
         snapPoints={snapPoints}>
         <View style={styles.commentHeaderContainer}>
-          <Text style={styles.commentHeader}>Comments</Text>
+          <Text style={styles.commentHeader}>{t('comments.title')}</Text>
         </View>
         <BottomSheetFlatList
           data={comments}

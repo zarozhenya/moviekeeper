@@ -1,0 +1,53 @@
+{
+  "translation": {
+    "language": "en",
+    "navigator": {
+      "back": "Back",
+      "home-title": "Home",
+      "movies-title": "Movies",
+      "profile-title": "Profile",
+      "language": "Language",
+      "details": "Details"
+    },
+    "authorization": {
+      "title": "Authorization",
+      "email": "Email",
+      "password": "Password",
+      "sign-up": "Sign Up",
+      "sign-in": "Sign In"
+    },
+    "home": {
+      "title": "Home"
+    },
+    "my-movies": {
+      "title": "My movies"
+    },
+    "profile": {
+      "title": "Hello,\n{{username}}!",
+      "sign-out": "Sign Out",
+      "language": "Language"
+    },
+    "movies": {
+      "empty-list": "No items."
+    },
+    "movie-card": {
+      "about": "About",
+      "comments": "View comments ({{quantity}})",
+      "button-remove": "Remove from \"My movies\"",
+      "button-add": "Add to \"My movies\"",
+      "votes": "Vote / Votes",
+      "popularity": "Popularity",
+      "original-title": "Original Title",
+      "genre": "Genre"
+    },
+    "comments": {
+      "me": "Me",
+      "empty-list": "No comments yet.",
+      "title": "Comments",
+      "placeholder": "Enter the comment"
+    },
+    "input": {
+      "placeholder": "Enter the query"
+    }
+  }
+}
