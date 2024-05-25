@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   listContainer: {
@@ -14,19 +14,38 @@ export const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 12,
     borderColor: 'gray',
+    backgroundColor: '#ffffff',
     gap: 8,
   },
   selectedListItem: {
     borderColor: '#ff6b08',
   },
   flag: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 30,
     lineHeight: 36,
+    color: '#000000',
     textAlign: 'center',
   },
   locale: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SFProDisplay-Medium',
+      },
+      android: {
+        fontFamily: 'SF-Pro-Display-Medium',
+      },
+    }),
     fontSize: 16,
     lineHeight: 20,
+    color: '#000000',
     textAlign: 'center',
   },
 });
